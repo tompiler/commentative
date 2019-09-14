@@ -1,8 +1,11 @@
 const express = require("express");
 const path = require("path");
-const app = express();
 const handlebars = require("express-handlebars");
 const bodyParser = require("body-parser");
+
+const apiRoutes = require("./api/main");
+
+const app = express();
 
 app.set("views", path.join(__dirname, "views"));
 
@@ -23,6 +26,8 @@ app.set("port", process.env.PORT || 3000);
 
 app.use(express.static("public"));
 
+app.use("/api", apiRoutes);
+
 app.get("/", (req, res) => {
   res.render("home");
 });
@@ -30,5 +35,4 @@ app.get("/", (req, res) => {
 app.listen(app.get("port"), () => {
   console.log("App running on port", app.get("port"));
 });
-
 module.exports = app;
