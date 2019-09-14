@@ -27,6 +27,10 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 
+app.get("/hardcoded-article", (req, res) => {
+  res.render("hardcoded-article");
+});
+
 app.listen(app.get("port"), () => {
   console.log("App running on port", app.get("port"));
 });
